@@ -33,7 +33,10 @@ func TestHelloHandler(t *testing.T) {
 	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// We don't need the logging part from main.go in the unit test itself.
 		// We just replicate the core logic: writing the response.
-		fmt.Fprintf(w, "Hello, World! Request received for path: %s\n", r.URL.Path)
+		_, err := fmt.Fprintf(w, "Hello, World! Request received for path: %s\n", r.URL.Path)
+		if err != nil {
+			t.Errorf("Error writing response: %v", err)
+		}
 	})
 
 	// Serve the HTTP request to our recorder, using the handler function.

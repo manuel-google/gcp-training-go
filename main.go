@@ -32,7 +32,10 @@ func main() {
 		}
 
 		log.Printf("Serving request for path: %s", r.URL.Path) // Log request path
-		fmt.Fprintf(w, "%s, %s!\n", greeting, target)
+		_, err := fmt.Fprintf(w, "%s, %s!\n", greeting, target)
+		if err != nil {
+			log.Printf("Error writing response: %s\n", err)
+		}
 	}
 
 	// Register the handler function for the root path "/".
