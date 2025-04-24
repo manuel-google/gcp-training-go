@@ -28,7 +28,7 @@ func main() {
 		// Get the target from the query parameter, default to "World"
 		target := r.URL.Query().Get("target")
 		if target == "" {
-			target = "World 3"
+			target = "World 4"
 		}
 
 		log.Printf("Serving request for path: %s", r.URL.Path) // Log request path
